@@ -3,7 +3,8 @@ package converter
 import (
 	"strconv"
 	"testing"
-	"github.com/mbordner/kazaam/registry"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestNot_Convert(t *testing.T) {
@@ -16,10 +17,10 @@ func TestNot_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`true"`, ``, `false`,},
-		{`false`,``,`true`,},
-		{`42"`, ``, `false`,},
-		{`"42"`, ``, `false`,},
+		{`true"`, ``, `false`},
+		{`false`, ``, `true`},
+		{`42"`, ``, `false`},
+		{`"42"`, ``, `false`},
 	}
 
 	for _, test := range table {

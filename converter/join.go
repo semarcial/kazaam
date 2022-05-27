@@ -3,10 +3,11 @@ package converter
 import (
 	"encoding/json"
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Join struct {
@@ -20,7 +21,7 @@ func (c *Join) Convert(jsonData []byte, value []byte, args []byte) (newValue []b
 
 	var stringValues []string
 
-	err = json.Unmarshal(value,&stringValues)
+	err = json.Unmarshal(value, &stringValues)
 	if err != nil {
 		return
 	}
@@ -47,12 +48,11 @@ func (c *Join) Convert(jsonData []byte, value []byte, args []byte) (newValue []b
 
 	if matches := re.FindStringSubmatch(argsString); matches != nil {
 
-		val := strings.Join(stringValues,matches[1])
+		val := strings.Join(stringValues, matches[1])
 
 		newValue = []byte(strconv.Quote(val))
 
 	}
-
 
 	return
 }

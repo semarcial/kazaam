@@ -3,9 +3,10 @@ package converter
 import (
 	"encoding/json"
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"regexp"
 	"strings"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Split struct {
@@ -46,12 +47,11 @@ func (c *Split) Convert(jsonData []byte, value []byte, args []byte) (newValue []
 
 	if matches := re.FindStringSubmatch(argsString); matches != nil {
 
-		vals := strings.Split(origValue,matches[1])
+		vals := strings.Split(origValue, matches[1])
 
 		newValue, err = json.Marshal(vals)
 
 	}
-
 
 	return
 }

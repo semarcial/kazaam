@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestSubstr_Convert(t *testing.T) {
@@ -15,7 +16,7 @@ func TestSubstr_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`"THIS IS A TEST"`, `1 4`, `"HIS"`,},
+		{`"THIS IS A TEST"`, `1 4`, `"HIS"`},
 	}
 
 	for _, test := range table {

@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mbordner/kazaam/converter"
-	"github.com/mbordner/kazaam/registry"
-	"github.com/mbordner/kazaam/transform"
 	"github.com/qntfy/jsonparser"
+	"github.com/qntfy/kazaam/v4/converter"
+	"github.com/qntfy/kazaam/v4/registry"
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 // TransformFunc defines the contract that any Transform function implementation
@@ -31,17 +31,18 @@ var defaultConverters map[string]registry.Converter
 func init() {
 
 	defaultSpecTypes = map[string]TransformFunc{
-		"pass":      transform.Pass,
-		"shift":     transform.Shift,
-		"extract":   transform.Extract,
-		"default":   transform.Default,
-		"delete":    transform.Delete,
-		"concat":    transform.Concat,
-		"coalesce":  transform.Coalesce,
-		"timestamp": transform.Timestamp,
-		"uuid":      transform.UUID,
-		"steps":     transform.Steps,
-		"merge":     transform.Merge,
+		"pass":        transform.Pass,
+		"shift":       transform.Shift,
+		"extract":     transform.Extract,
+		"default":     transform.Default,
+		"delete":      transform.Delete,
+		"concat":      transform.Concat,
+		"coalesce":    transform.Coalesce,
+		"timestamp":   transform.Timestamp,
+		"uuid":        transform.UUID,
+		"steps":       transform.Steps,
+		"merge":       transform.Merge,
+		"conditional": transform.Conditional,
 	}
 
 	defaultConverters = map[string]registry.Converter{

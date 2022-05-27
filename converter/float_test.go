@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestFloat_Convert(t *testing.T) {
@@ -16,11 +17,11 @@ func TestFloat_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`5`, `1`, `5.0`,},
-		{`5.01`, `2`, `5.01`,},
-		{`5.012`,`1`,`5.0`},
-		{`7.77`,`1`,`7.8`},
-		{`500.01`,`1`,`500.0`},
+		{`5`, `1`, `5.0`},
+		{`5.01`, `2`, `5.01`},
+		{`5.012`, `1`, `5.0`},
+		{`7.77`, `1`, `7.8`},
+		{`500.01`, `1`, `500.0`},
 	}
 
 	for _, test := range table {

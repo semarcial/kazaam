@@ -3,8 +3,9 @@ package converter
 import (
 	"encoding/json"
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"strconv"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 var mappedSpecs map[string]map[string]string

@@ -2,9 +2,10 @@ package converter
 
 import (
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"regexp"
 	"strconv"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Substr struct {

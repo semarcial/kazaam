@@ -1,10 +1,11 @@
 package converter
 
 import (
-	"github.com/pkg/errors"
-	"github.com/mbordner/kazaam/transform"
 	"strconv"
 	"strings"
+
+	"github.com/pkg/errors"
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Upper struct {

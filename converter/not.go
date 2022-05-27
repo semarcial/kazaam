@@ -2,7 +2,8 @@ package converter
 
 import (
 	"fmt"
-	"github.com/mbordner/kazaam/transform"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Not struct {

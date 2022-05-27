@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestSplitn_Convert(t *testing.T) {
@@ -16,9 +17,9 @@ func TestSplitn_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`"aazbbzcczdd"`, `z 4`, `"dd"`,},
-		{`"abc|def|ghi|jkl|mno"`, `| 2`, `"def"`,},
-		{"\"abc\\ndef\\nghi\\njkl\\nmno\"", "\n 5", `"mno"`,},
+		{`"aazbbzcczdd"`, `z 4`, `"dd"`},
+		{`"abc|def|ghi|jkl|mno"`, `| 2`, `"def"`},
+		{"\"abc\\ndef\\nghi\\njkl\\nmno\"", "\n 5", `"mno"`},
 	}
 
 	for _, test := range table {

@@ -2,12 +2,13 @@ package transform
 
 import (
 	"errors"
-	"github.com/mbordner/kazaam/registry"
 	"go/ast"
 	"go/constant"
 	"go/parser"
 	"go/token"
 	"strconv"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 // support for basic expression evaluation support.
@@ -149,7 +150,7 @@ func (expr *BasicExpr) evalExpr(exp ast.Expr) (val constant.Value, err error) {
 			val = constant.MakeBool(exp.Name == "true")
 			return
 		} else if exp.Name == "null" || exp.Name == "nil" {
-			val =  constant.MakeUnknown()
+			val = constant.MakeUnknown()
 			return
 		} else {
 			// assumed to be a json path variable -- without selector syntax, e.g top level prop
@@ -159,7 +160,7 @@ func (expr *BasicExpr) evalExpr(exp ast.Expr) (val constant.Value, err error) {
 	case *ast.SelectorExpr:
 		pos := exp.Pos()
 		end := exp.End()
-		path := expr.fullExpression[ pos-1 : end-1 ]
+		path := expr.fullExpression[pos-1 : end-1]
 		val, err = expr.evalJsonPath(path)
 		return
 	case *ast.BasicLit:

@@ -3,10 +3,11 @@ package transform
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/mbordner/kazaam/registry"
 	"reflect"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 const testJSONInput = `{"rating":{"example":{"value":3},"primary":{"value":3}}}`

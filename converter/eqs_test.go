@@ -3,7 +3,8 @@ package converter
 import (
 	"strconv"
 	"testing"
-	"github.com/mbordner/kazaam/registry"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestEqs_Convert(t *testing.T) {
@@ -16,8 +17,8 @@ func TestEqs_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`"The quick brown fox jumps over the lazy dog"`, `"The quick brown fox jumps over the lazy dog"`, `true`,},
-		{`42`,`42`,`true`,},
+		{`"The quick brown fox jumps over the lazy dog"`, `"The quick brown fox jumps over the lazy dog"`, `true`},
+		{`42`, `42`, `true`},
 	}
 
 	for _, test := range table {

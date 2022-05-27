@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestMul_Convert(t *testing.T) {
@@ -15,8 +16,8 @@ func TestMul_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`5`, `1`, `5`,},
-		{`5`, `2`, `10`,},
+		{`5`, `1`, `5`},
+		{`5`, `2`, `10`},
 		{`5`, `2.5`, `12.5`},
 		{`10`, `.5`, `5`},
 	}

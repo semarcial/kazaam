@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	"github.com/qntfy/jsonparser"
-	"github.com/mbordner/kazaam"
-	"github.com/mbordner/kazaam/transform"
+	"github.com/qntfy/kazaam/v4"
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 const testJSONInput = `{"rating":{"example":{"value":3},"primary":{"value":3}}}`
@@ -442,17 +442,17 @@ func TestKazaamOverArrayStrings(t *testing.T) {
                 "over": "doc.guidObjects",
                 "spec": {"raw": "$"}
         }]`
-        jsonIn := `{"doc":{"guidObjects":["foo",5,false]}}`
-        jsonOut := `{"doc":{"guidObjects":[{"raw":"foo"},{"raw":5},{"raw":false}]}}`
+	jsonIn := `{"doc":{"guidObjects":["foo",5,false]}}`
+	jsonOut := `{"doc":{"guidObjects":[{"raw":"foo"},{"raw":5},{"raw":false}]}}`
 
-        kazaamTransform, _ := kazaam.NewKazaam(spec)
-        kazaamOut, _ := kazaamTransform.TransformJSONStringToString(jsonIn)
-        areEqual, _ := checkJSONStringsEqual(kazaamOut, jsonOut)
+	kazaamTransform, _ := kazaam.NewKazaam(spec)
+	kazaamOut, _ := kazaamTransform.TransformJSONStringToString(jsonIn)
+	areEqual, _ := checkJSONStringsEqual(kazaamOut, jsonOut)
 
-        if !areEqual {
-                t.Error("Transformed data does not match expectation.")
-                t.Log("Expected: ", jsonOut)
-                t.Log("Actual:   ", kazaamOut)
-                t.FailNow()
-        }
+	if !areEqual {
+		t.Error("Transformed data does not match expectation.")
+		t.Log("Expected: ", jsonOut)
+		t.Log("Actual:   ", kazaamOut)
+		t.FailNow()
+	}
 }

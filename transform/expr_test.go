@@ -1,8 +1,9 @@
 package transform
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 type ExprConverterTest struct{}
@@ -11,18 +12,18 @@ func (c *ExprConverterTest) Init(config []byte) (err error) {
 	return
 }
 func (c *ExprConverterTest) Convert(jsonData []byte, value []byte, args []byte) (newValue []byte, err error) {
-	v,e := NewJSONValue(args)
+	v, e := NewJSONValue(args)
 	if e != nil {
 		err = e
 	} else {
-		v,e := NewJSONValue([]byte(v.GetStringValue()))
+		v, e := NewJSONValue([]byte(v.GetStringValue()))
 		if e != nil {
 			err = e
 		} else {
 			if v.GetType() == JSONString {
 				newValue = args
 			} else {
-				newValue =[]byte(v.String())
+				newValue = []byte(v.String())
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/transform"
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type ConverterBase struct{}

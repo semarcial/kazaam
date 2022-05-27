@@ -2,8 +2,9 @@ package converter
 
 import (
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"strconv"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Float struct {
@@ -12,7 +13,7 @@ type Float struct {
 
 func (c *Float) Convert(jsonData []byte, value []byte, args []byte) (newValue []byte, err error) {
 
-	var jsonValue,argsValue *transform.JSONValue
+	var jsonValue, argsValue *transform.JSONValue
 	jsonValue, err = c.NewJSONValue(value)
 	if err != nil {
 		return
@@ -22,7 +23,6 @@ func (c *Float) Convert(jsonData []byte, value []byte, args []byte) (newValue []
 	if err != nil {
 		return
 	}
-
 
 	if jsonValue.IsNumber() == false || argsValue.IsString() == false {
 		err = errors.New("invalid value or arguments for float converter")

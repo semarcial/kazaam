@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestRegex_Convert(t *testing.T) {
@@ -46,11 +47,11 @@ func TestRegex_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`"$5,000,000"`, `remove_dollar_sign`, `"5,000,000"`,},
-		{`"5,000,000"`, `remove_comma`, `"5000000"`,},
-		{`"500"`, `remove_comma`, `"500"`,},
-		{`"531312"`, `convert_naics`, `"real_estate"`,},
-		{`"999"`, `convert_naics`, `"999"`,},
+		{`"$5,000,000"`, `remove_dollar_sign`, `"5,000,000"`},
+		{`"5,000,000"`, `remove_comma`, `"5000000"`},
+		{`"500"`, `remove_comma`, `"500"`},
+		{`"531312"`, `convert_naics`, `"real_estate"`},
+		{`"999"`, `convert_naics`, `"999"`},
 	}
 
 	for _, test := range table {

@@ -2,10 +2,11 @@ package converter
 
 import (
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type Splitn struct {
@@ -52,14 +53,13 @@ func (c *Splitn) Convert(jsonData []byte, value []byte, args []byte) (newValue [
 			return
 		}
 
-		vals := strings.SplitN(origValue,matches[1],int(n)+1)
+		vals := strings.SplitN(origValue, matches[1], int(n)+1)
 
 		if len(vals) >= int(n) {
 			newValue = []byte(strconv.Quote(vals[int(n)-1]))
 		}
 
 	}
-
 
 	return
 }

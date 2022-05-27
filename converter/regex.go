@@ -3,9 +3,10 @@ package converter
 import (
 	"encoding/json"
 	"errors"
-	"github.com/mbordner/kazaam/transform"
 	"regexp"
 	"strconv"
+
+	"github.com/qntfy/kazaam/v4/transform"
 )
 
 type regexSpecStruct struct {

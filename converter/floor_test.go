@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestFloor_Convert(t *testing.T) {
@@ -15,8 +16,8 @@ func TestFloor_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`5.1`, ``, `5`,},
-		{`5.6`, ``, `5`,},
+		{`5.1`, ``, `5`},
+		{`5.6`, ``, `5`},
 		{`0.01`, ``, `0`},
 	}
 

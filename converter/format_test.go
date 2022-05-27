@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestFormat_Convert(t *testing.T) {
@@ -15,12 +16,12 @@ func TestFormat_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`5.1`, `%.0f`, `"5"`,},
-		{`5.23546`, `%.2f`, `"5.24"`,},
+		{`5.1`, `%.0f`, `"5"`},
+		{`5.23546`, `%.2f`, `"5.24"`},
 		{`0.01`, `%.4f`, `"0.0100"`},
 		{`true`, `%t`, `"true"`},
 		{`"the something fox"`, `%s jumped over something.`, `"the something fox jumped over something."`},
-		{`42`, `%d`,`"42"`},
+		{`42`, `%d`, `"42"`},
 	}
 
 	for _, test := range table {

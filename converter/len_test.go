@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestLen_Convert(t *testing.T) {
@@ -16,9 +17,9 @@ func TestLen_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`"The quick brown fox jumps over the lazy dog"`, ``, `43`,},
-		{`"the lazy dog"`, ``, `12`,},
-		{`["one","two"]`,``,`2`},
+		{`"The quick brown fox jumps over the lazy dog"`, ``, `43`},
+		{`"the lazy dog"`, ``, `12`},
+		{`["one","two"]`, ``, `2`},
 	}
 
 	for _, test := range table {

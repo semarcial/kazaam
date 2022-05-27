@@ -1,9 +1,10 @@
 package converter
 
 import (
-	"github.com/mbordner/kazaam/registry"
 	"strconv"
 	"testing"
+
+	"github.com/qntfy/kazaam/v4/registry"
 )
 
 func TestNtos_Convert(t *testing.T) {
@@ -16,9 +17,9 @@ func TestNtos_Convert(t *testing.T) {
 		arguments string
 		expected  string
 	}{
-		{`5`, ``, `"5"`,},
-		{`5.01`, ``, `"5.01"`,},
-		{`-5.01`, ``, `"-5.01"`,},
+		{`5`, ``, `"5"`},
+		{`5.01`, ``, `"5.01"`},
+		{`-5.01`, ``, `"-5.01"`},
 	}
 
 	for _, test := range table {
