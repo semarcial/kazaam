@@ -1,7 +1,7 @@
 package converter
 
 import (
-	"github.com/semarcial/kazaam/v1/transform"
+	"github.com/semarcial/kazaam/transform"
 )
 
 type ConverterBase struct{}

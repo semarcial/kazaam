@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/v1/registry"
+	"github.com/semarcial/kazaam/registry"
 )
 
 func TestFloat_Convert(t *testing.T) {

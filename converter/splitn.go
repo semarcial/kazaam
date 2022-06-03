@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/semarcial/kazaam/v1/transform"
+	"github.com/semarcial/kazaam/transform"
 )
 
 type Splitn struct {

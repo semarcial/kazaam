@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/semarcial/kazaam/v1/transform"
+	"github.com/semarcial/kazaam/transform"
 )
 
 var mappedSpecs map[string]map[string]string

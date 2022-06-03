@@ -1,4 +1,4 @@
-module github.com/semarcial/kazaam/v1
+module github.com/semarcial/kazaam
 
 go 1.18
 

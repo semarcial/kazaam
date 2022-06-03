@@ -10,7 +10,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/semarcial/kazaam/v1"
+	"github.com/semarcial/kazaam"
 )
 
 var (

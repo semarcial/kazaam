@@ -8,7 +8,7 @@ import (
 	"go/token"
 	"strconv"
 
-	"github.com/semarcial/kazaam/v1/registry"
+	"github.com/semarcial/kazaam/registry"
 )
 
 // support for basic expression evaluation support.

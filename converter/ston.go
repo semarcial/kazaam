@@ -3,7 +3,7 @@ package converter
 import (
 	"errors"
 
-	"github.com/semarcial/kazaam/v1/transform"
+	"github.com/semarcial/kazaam/transform"
 )
 
 type Ston struct {

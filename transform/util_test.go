@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/v1/registry"
+	"github.com/semarcial/kazaam/registry"
 )
 
 const testJSONInput = `{"rating":{"example":{"value":3},"primary":{"value":3}}}`
