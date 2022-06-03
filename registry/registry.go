@@ -3,7 +3,7 @@ package registry
 import "errors"
 
 type Converter interface {
-	Init(config []byte) (error)
+	Init(config []byte) error
 	Convert(jsonData []byte, value []byte, args []byte) (newValue []byte, err error)
 }
 
