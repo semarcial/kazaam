@@ -3,7 +3,7 @@ package transform
 import (
 	"testing"
 
-	"github.com/semarcial/kazaam/registry"
+	"github.com/semarcial/kazaam/v5/registry"
 )
 
 type ExprConverterTest struct{}

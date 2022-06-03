@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/semarcial/kazaam/transform"
+	"github.com/semarcial/kazaam/v5/transform"
 )
 
 type Format struct {

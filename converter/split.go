@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/semarcial/kazaam/transform"
+	"github.com/semarcial/kazaam/v5/transform"
 )
 
 type Split struct {

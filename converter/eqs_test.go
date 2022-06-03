@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/registry"
+	"github.com/semarcial/kazaam/v5/registry"
 )
 
 func TestEqs_Convert(t *testing.T) {

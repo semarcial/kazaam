@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/registry"
+	"github.com/semarcial/kazaam/v5/registry"
 )
 
 func TestSplitn_Convert(t *testing.T) {

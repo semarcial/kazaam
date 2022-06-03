@@ -5,7 +5,7 @@ import (
 	"go/constant"
 	"math"
 
-	"github.com/semarcial/kazaam/transform"
+	"github.com/semarcial/kazaam/v5/transform"
 )
 
 type Floor struct {

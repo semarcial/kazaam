@@ -3,7 +3,7 @@ package converter
 import (
 	"fmt"
 
-	"github.com/semarcial/kazaam/transform"
+	"github.com/semarcial/kazaam/v5/transform"
 )
 
 type Not struct {

@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/registry"
+	"github.com/semarcial/kazaam/v5/registry"
 )
 
 func TestJoin_Convert(t *testing.T) {

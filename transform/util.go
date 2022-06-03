@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/semarcial/kazaam/registry"
+	"github.com/semarcial/kazaam/v5/registry"
 
 	"github.com/qntfy/jsonparser"
 )
