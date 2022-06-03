@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/qntfy/kazaam/v4/transform"
+	"github.com/semarcial/kazaam/v4/transform"
 )
 
 type regexSpecStruct struct {

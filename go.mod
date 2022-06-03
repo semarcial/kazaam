@@ -1,4 +1,4 @@
-module github.com/qntfy/kazaam/v4
+module github.com/semarcial/kazaam/v4
 
 go 1.18
 

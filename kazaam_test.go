@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/qntfy/jsonparser"
-	"github.com/qntfy/kazaam/v4/transform"
+	"github.com/semarcial/kazaam/v4/transform"
 )
 
 func TestDefaultKazaamGetUnknownTransform(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"go/constant"
 	"go/token"
 
-	"github.com/qntfy/kazaam/v4/transform"
+	"github.com/semarcial/kazaam/v4/transform"
 )
 
 type Add struct {

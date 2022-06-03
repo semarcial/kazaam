@@ -4,7 +4,7 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/qntfy/kazaam/v4/transform"
+	"github.com/semarcial/kazaam/v4/transform"
 )
 
 type Float struct {

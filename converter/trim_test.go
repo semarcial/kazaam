@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/qntfy/kazaam/v4/registry"
+	"github.com/semarcial/kazaam/v4/registry"
 )
 
 func TestTrim_Convert(t *testing.T) {
