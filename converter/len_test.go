@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/semarcial/kazaam/v4/registry"
+	"github.com/semarcial/kazaam/v1/registry"
 )
 
 func TestLen_Convert(t *testing.T) {
