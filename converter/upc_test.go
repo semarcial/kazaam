@@ -7,20 +7,21 @@ import (
 	"github.com/semarcial/kazaam/v5/registry"
 )
 
-func TestBiglots_Ucp_Convert(t *testing.T) {
-	registry.RegisterConverter("upc_biglots", &UpcBiglots{})
-	c := registry.GetConverter("upc_biglots")
+func Test_Ucp_Convert(t *testing.T) {
+	registry.RegisterConverter("upc", &Upc{})
+	c := registry.GetConverter("upc")
 
 	table := []struct {
 		value     string
 		arguments string
 		expected  string
 	}{
-		{`"9526588315"`, ``, `"009526588315"`},
-		{`"0165719565"`, ``, `"000165719565"`},
-		{`"0000056787799"`, ``, `"000056787799"`},
-		{`""`, ``, `""`},
-		{`"ACCF"`, ``, `"ACCF"`},
+		{`"9526588315"`, `12`, `"009526588315"`},
+		{`"0165719565"`, `12`, `"000165719565"`},
+		{`"0000056787799"`, `12`, `"000056787799"`},
+		{`"0000056787799"`, `8`, `"56787799"`},
+		{`""`, `10`, `""`},
+		{`"ACCF"`, `20`, `"ACCF"`},
 	}
 
 	for _, test := range table {
