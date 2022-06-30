@@ -10,7 +10,7 @@ import (
 	"github.com/semarcial/kazaam/v5/transform"
 )
 
-var ErrorInvalidArgs = errors.New("invalid value or arguments for upc converter")
+var errorInvalidArgs = errors.New("invalid value or arguments for upc converter")
 
 type Upc struct {
 	ConverterBase
@@ -32,7 +32,7 @@ func (c *Upc) Convert(jsonData []byte, value []byte, args []byte) (newValue []by
 	}
 
 	if !jsonValue.IsString() || !argsValue.IsString() {
-		err = ErrorInvalidArgs
+		err = errorInvalidArgs
 		return
 	}
 

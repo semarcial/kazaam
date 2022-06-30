@@ -69,6 +69,7 @@ func init() {
 		"join":   &converter.Join{},
 		"float":  &converter.Float{},
 		"upc":    &converter.Upc{},
+		"url":    &converter.Url{},
 	}
 
 	for name, conv := range defaultConverters {
