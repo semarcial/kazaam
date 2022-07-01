@@ -27,15 +27,18 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	replacer := strings.NewReplacer("'", "ft", "-", " ", "\"", "in")
+	replacer := strings.NewReplacer("'", "ft", "-", " ", "\"", "in", "(", " ", ")", " ")
 
-	unscaped := html.UnescapeString(strings.ReplaceAll(string(sizeData), "\"", ""))
+	newSizeData := strings.TrimSuffix(strings.TrimPrefix(string(sizeData), "\""), "\"")
+
+	unscaped := html.UnescapeString(strings.ReplaceAll(newSizeData, "\"", ""))
 	sizeDataClean := replacer.Replace(unscaped)
 	sizeData = []byte(strconv.Quote(sizeDataClean))
 
 	if string(sizeDataClean) == "null" || string(sizeDataClean) == "" {
 
-		output := replacer.Replace(html.UnescapeString(string(nameData)))
+		newNameData := strings.TrimSuffix(strings.TrimPrefix(string(nameData), "\""), "\"")
+		output := replacer.Replace(html.UnescapeString(newNameData))
 		pattern := (*spec.Spec)["pattern"]
 
 		var re *regexp.Regexp
@@ -48,17 +51,20 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 		lowerName := strings.ToLower(output)
 		matches := re.FindAllString(lowerName, -1)
 
-		defaultValue := (*spec.Spec)["default"]
-		var defaultSize string
-		if defaultValue == nil {
-			defaultSize = oneCount
-		} else {
-			defaultSize = defaultValue.(string)
-		}
-
 		if len(matches) != 0 {
-			sizeData = []byte(strconv.Quote(strings.TrimSpace(strings.Join(matches, ","))))
+
+			finalReplacer := strings.NewReplacer(",", "", "@", ",")
+			newSize := strings.Join(matches, "@")
+			output := finalReplacer.Replace(newSize)
+			sizeData = []byte(strconv.Quote(strings.TrimSpace(output)))
 		} else {
+			defaultValue := (*spec.Spec)["default"]
+			var defaultSize string
+			if defaultValue == nil {
+				defaultSize = oneCount
+			} else {
+				defaultSize = defaultValue.(string)
+			}
 			sizeData = []byte(strconv.Quote(defaultSize))
 		}
 

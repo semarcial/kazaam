@@ -9,7 +9,7 @@ func TestExtractFeetSize(t *testing.T) {
 		"pattern": null
 	}`
 	jsonIn := `{"name":"My Magic Carpet Ramage Maroon Washable Area Rug, (5' x 7')", "size": null}`
-	jsonOut := `{"size":"(5ft , 7ft)"}`
+	jsonOut := `{"size":"5ft , 7ft"}`
 
 	cfg := getConfig(spec, false)
 	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)
@@ -133,6 +133,26 @@ func TestNotExtractReturnsDefault(t *testing.T) {
 	}`
 	jsonIn := `{"name":"Pet Small &quot;Love&quot; Green & Gray Sweater Dress ED by Ellen DeGeneres", "size": null}`
 	jsonOut := `{"size":"2 count"}`
+
+	cfg := getConfig(spec, false)
+	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)
+	areEqual, _ := checkJSONBytesEqual(kazaamOut, []byte(jsonOut))
+
+	if !areEqual {
+		t.Error("Transformed data does not match expectation.")
+		t.Log("Expected:   ", jsonOut)
+		t.Log("Actual:     ", string(kazaamOut))
+		t.FailNow()
+	}
+}
+
+func TestRemovingQuote(t *testing.T) {
+	spec := `{
+		"source": "name",
+		"targetPath": "size"
+	}`
+	jsonIn := `{"name":"White Ceramic Pillar Holder, (9&quot;)", "size": null}`
+	jsonOut := `{"size":"9in"}`
 
 	cfg := getConfig(spec, false)
 	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)
