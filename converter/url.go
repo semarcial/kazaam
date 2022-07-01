@@ -42,7 +42,7 @@ func (c *Url) Convert(jsonData []byte, value []byte, args []byte) (newValue []by
 		} else {
 			result = fmt.Sprintf("%s:%s", protocol, url)
 		}
-		newValue = []byte(strconv.Quote(result))
+		newValue = []byte(strconv.Quote(strings.TrimSpace(result)))
 	}
 
 	if strings.Contains(string(newValue), "set=") && !strings.Contains(string(newValue), "?set=") {
