@@ -1,6 +1,7 @@
 package transform
 
 import (
+	"html"
 	"regexp"
 	"strconv"
 	"strings"
@@ -28,7 +29,9 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 	sizeDataClean := strings.ReplaceAll(string(sizeData), "\"", "")
 
 	if string(sizeDataClean) == "null" || string(sizeDataClean) == "" {
-		newName := strings.ReplaceAll(strings.ReplaceAll(string(nameData), "'", "ft"), "-", " ")
+
+		replacer := strings.NewReplacer("'", "ft", "-", " ", "\"", "in")
+		output := replacer.Replace(html.UnescapeString(string(nameData)))
 
 		pattern := (*spec.Spec)["pattern"]
 
@@ -39,7 +42,7 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 			re = regexp.MustCompile(pattern.(string))
 		}
 
-		lowerName := strings.ToLower(newName)
+		lowerName := strings.ToLower(output)
 		matches := re.FindAllString(lowerName, -1)
 		sizeData = []byte(strconv.Quote(strings.TrimSpace(strings.Join(matches, ","))))
 	}
