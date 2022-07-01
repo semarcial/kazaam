@@ -47,8 +47,7 @@ func TestExtractPiecesSizeWhenNull(t *testing.T) {
 func TestExtractPiecesSizeWhenEmpty(t *testing.T) {
 	spec := `{
 		"source": "name",
-		"targetPath": "size",
-		"pattern": null
+		"targetPath": "size"
 	}`
 	jsonIn := `{"name":"Tasha Purple & Gray Medallion Queen 6-Piece Sheet Set Living Colors", "size": ""}`
 	jsonOut := `{"size":"6 piece"}`
@@ -68,8 +67,7 @@ func TestExtractPiecesSizeWhenEmpty(t *testing.T) {
 func TestNotExtractPiecesSize(t *testing.T) {
 	spec := `{
 		"source": "name",
-		"targetPath": "size",
-		"pattern": null
+		"targetPath": "size"
 	}`
 	jsonIn := `{"name":"Tasha Purple & Gray Medallion Queen 6-Piece Sheet Set Living Colors", "size": "6 pieces"}`
 	jsonOut := `{"size":"6 pieces"}`
@@ -94,6 +92,47 @@ func TestNotExtractCustomPattern(t *testing.T) {
 	}`
 	jsonIn := `{"name":"Tasha Purple & Gray Medallion Queen 6-Piece Sheet Set Living Colors", "size": ""}`
 	jsonOut := `{"size":"tasha,purple,gray,medallion,queen,piece,sheet,set,living,colors"}`
+
+	cfg := getConfig(spec, false)
+	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)
+	areEqual, _ := checkJSONBytesEqual(kazaamOut, []byte(jsonOut))
+
+	if !areEqual {
+		t.Error("Transformed data does not match expectation.")
+		t.Log("Expected:   ", jsonOut)
+		t.Log("Actual:     ", string(kazaamOut))
+		t.FailNow()
+	}
+}
+
+func TestNotExtractReturns1Count(t *testing.T) {
+	spec := `{
+		"source": "name",
+		"targetPath": "size"
+	}`
+	jsonIn := `{"name":"Pet Small &quot;Love&quot; Green & Gray Sweater Dress ED by Ellen DeGeneres", "size": null}`
+	jsonOut := `{"size":"1 ct"}`
+
+	cfg := getConfig(spec, false)
+	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)
+	areEqual, _ := checkJSONBytesEqual(kazaamOut, []byte(jsonOut))
+
+	if !areEqual {
+		t.Error("Transformed data does not match expectation.")
+		t.Log("Expected:   ", jsonOut)
+		t.Log("Actual:     ", string(kazaamOut))
+		t.FailNow()
+	}
+}
+
+func TestNotExtractReturnsDefault(t *testing.T) {
+	spec := `{
+		"source": "name",
+		"targetPath": "size",
+		"default": "2 count"
+	}`
+	jsonIn := `{"name":"Pet Small &quot;Love&quot; Green & Gray Sweater Dress ED by Ellen DeGeneres", "size": null}`
+	jsonOut := `{"size":"2 count"}`
 
 	cfg := getConfig(spec, false)
 	kazaamOut, _ := getTransformTestWrapper(Size, cfg, jsonIn)

@@ -8,6 +8,7 @@ import (
 )
 
 const sizePattern = `\s*[-,(\[]*\s*((?:(?:\d+|\d*\.\d+)\s*)(?:[-/_]+\s*(?:\d+|\d*\.\d+)\s*)?(?:pack|pk|in|inches|count|cnt|ct|ctn|ounce|oz|gallon|gal|pound|lb|ml|liter|l|(?:fl(?:uid)?\.?\s+(?:oz|ounce))|quart|qt|piece|pc|pint|pt|g|mg|serving|(?:sq\ )?ft|tablet|softgel|capsule|lozenge|can|bottle|sheet|roll)s?\b\.?)\s*(?:bag|bars?|box(?:es)?|cans?)?(?:\W*\beach\b\W*$)?[)\]]?`
+const oneCount = "1 ct"
 
 func Size(spec *Config, data []byte) ([]byte, error) {
 	var outData []byte
@@ -26,13 +27,15 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 		return nil, err
 	}
 
-	sizeDataClean := strings.ReplaceAll(string(sizeData), "\"", "")
+	replacer := strings.NewReplacer("'", "ft", "-", " ", "\"", "in")
+
+	unscaped := html.UnescapeString(strings.ReplaceAll(string(sizeData), "\"", ""))
+	sizeDataClean := replacer.Replace(unscaped)
+	sizeData = []byte(strconv.Quote(sizeDataClean))
 
 	if string(sizeDataClean) == "null" || string(sizeDataClean) == "" {
 
-		replacer := strings.NewReplacer("'", "ft", "-", " ", "\"", "in")
 		output := replacer.Replace(html.UnescapeString(string(nameData)))
-
 		pattern := (*spec.Spec)["pattern"]
 
 		var re *regexp.Regexp
@@ -44,7 +47,21 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 
 		lowerName := strings.ToLower(output)
 		matches := re.FindAllString(lowerName, -1)
-		sizeData = []byte(strconv.Quote(strings.TrimSpace(strings.Join(matches, ","))))
+
+		defaultValue := (*spec.Spec)["default"]
+		var defaultSize string
+		if defaultValue == nil {
+			defaultSize = oneCount
+		} else {
+			defaultSize = defaultValue.(string)
+		}
+
+		if len(matches) != 0 {
+			sizeData = []byte(strconv.Quote(strings.TrimSpace(strings.Join(matches, ","))))
+		} else {
+			sizeData = []byte(strconv.Quote(defaultSize))
+		}
+
 	}
 
 	outData, err = setJSONRaw(outData, sizeData, "size")
