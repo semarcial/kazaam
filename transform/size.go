@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const sizePattern = `\s*[-,(\[]*\s*((?:(?:\d+|\d*\.\d+)\s*)(?:[-/_]+\s*(?:\d+|\d*\.\d+)\s*)?(?:pack|pk|in|inches|count|cnt|ct|ctn|ounce|oz|gallon|gal|pound|lb|ml|liter|l|(?:fl(?:uid)?\.?\s+(?:oz|ounce))|quart|qt|piece|pc|pint|pt|g|mg|serving|(?:sq\ )?ft|tablet|softgel|capsule|lozenge|can|bottle|sheet|roll)s?\b\.?)\s*(?:bag|bars?|box(?:es)?|cans?)?(?:\W*\beach\b\W*$)?[)\]]?`
+
 func Size(spec *Config, data []byte) ([]byte, error) {
 	var outData []byte
 	if spec.InPlace {
@@ -15,11 +17,11 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 		outData = []byte(`{}`)
 	}
 
-	nameData, err := getJSONRaw(data, "name", true)
+	nameData, err := getJSONRaw(data, (*spec.Spec)["source"].(string), true)
 	if err != nil {
 		return nil, err
 	}
-	sizeData, err := getJSONRaw(data, "size", true)
+	sizeData, err := getJSONRaw(data, (*spec.Spec)["targetPath"].(string), true)
 	if err != nil {
 		return nil, err
 	}
@@ -32,12 +34,18 @@ func Size(spec *Config, data []byte) ([]byte, error) {
 		fmt.Println("Here")
 		newName := strings.ReplaceAll(strings.ReplaceAll(string(nameData), "'", "ft"), "-", " ")
 
-		sizePattern := `\s*[-,(\[]*\s*((?:(?:\d+|\d*\.\d+)\s*)(?:[-/_]+\s*(?:\d+|\d*\.\d+)\s*)?(?:pack|pk|in|inches|count|cnt|ct|ctn|ounce|oz|gallon|gal|pound|lb|ml|liter|l|(?:fl(?:uid)?\.?\s+(?:oz|ounce))|quart|qt|piece|pc|pint|pt|g|mg|serving|(?:sq\ )?ft|tablet|softgel|capsule|lozenge|can|bottle|sheet|roll)s?\b\.?)\s*(?:bag|bars?|box(?:es)?|cans?)?(?:\W*\beach\b\W*$)?[)\]]?`
+		pattern := (*spec.Spec)["pattern"]
 
-		r := regexp.MustCompile(sizePattern)
+		var re *regexp.Regexp
+		if pattern == nil {
+			re = regexp.MustCompile(sizePattern)
+		} else {
+			re = regexp.MustCompile(pattern.(string))
+		}
+
 		lowerName := strings.ToLower(newName)
 		fmt.Println(lowerName)
-		matches := r.FindAllString(lowerName, -1)
+		matches := re.FindAllString(lowerName, -1)
 
 		sizeData = []byte(strconv.Quote(strings.TrimSpace(strings.Join(matches, ","))))
 	}
