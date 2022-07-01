@@ -43,6 +43,7 @@ func init() {
 		"steps":       transform.Steps,
 		"merge":       transform.Merge,
 		"conditional": transform.Conditional,
+		"size":        transform.Size,
 	}
 
 	defaultConverters = map[string]registry.Converter{
