@@ -18,6 +18,7 @@ func Test_Url_Convert(t *testing.T) {
 	}{
 		{`"//images.biglots.com/My+Arcade+Retro+Arcade+Machine+X?set=imageURL%5B%2"`, `https`, `"https://images.biglots.com/My+Arcade+Retro+Arcade+Machine+X?set=imageURL%5B%2"`},
 		{`"//images.biglots.com/My+Arcade+Retro+Arcade+Machine+Xset=imageURL%5B%2"`, `http`, `"http://images.biglots.com/My+Arcade+Retro+Arcade+Machine+X?set=imageURL%5B%2"`},
+		{`"https://images.biglots.com/My+Arcade+Retro+Arcade+Machine+Xset=imageURL%5B%2"`, `https`, `"https://images.biglots.com/My+Arcade+Retro+Arcade+Machine+X?set=imageURL%5B%2"`},
 	}
 
 	for _, test := range table {

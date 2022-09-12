@@ -35,7 +35,7 @@ func (c *Url) Convert(jsonData []byte, value []byte, args []byte) (newValue []by
 	url := jsonValue.GetStringValue()
 	protocol := argsValue.GetStringValue()
 
-	if !strings.HasPrefix(url, "http:") || !strings.HasPrefix(url, "https:") || !strings.HasPrefix(url, "http") || !strings.HasPrefix(url, "https") {
+	if !strings.HasPrefix(url, "http") && !strings.HasPrefix(url, "https") {
 		var result string
 		if strings.Contains(protocol, ":") {
 			result = fmt.Sprintf("%s%s", protocol, url)
